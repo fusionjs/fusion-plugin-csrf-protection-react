@@ -235,9 +235,9 @@ babel-core@6, babel-core@^6.26.0:
     slash "^1.0.0"
     source-map "^0.5.6"
 
-babel-eslint@^8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-8.0.0.tgz#ce06f385bdfb5b6d7e603f06222f891abd14c240"
+babel-eslint@^8.0.1:
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-8.0.1.tgz#5d718be7a328625d006022eb293ed3008cbd6346"
   dependencies:
     babel-code-frame "7.0.0-beta.0"
     babel-traverse "7.0.0-beta.0"
@@ -1033,7 +1033,7 @@ core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
 
-create-universal-package@^1.0.0-rc.14:
+create-universal-package@^1.0.0-rc.18:
   version "1.0.0-rc.18"
   resolved "https://registry.yarnpkg.com/create-universal-package/-/create-universal-package-1.0.0-rc.18.tgz#d39b2f5e7513ec137e1041e595b11f2c7b540982"
   dependencies:
@@ -1297,20 +1297,20 @@ eslint-plugin-cup@^1.0.0-rc.4:
   dependencies:
     globals "^10.0.0"
 
-eslint-plugin-flowtype@^2.35.0:
-  version "2.36.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-flowtype/-/eslint-plugin-flowtype-2.36.0.tgz#ec21cf685dc270c2b24a99bdba1a57999c1040ec"
+eslint-plugin-flowtype@^2.39.1:
+  version "2.39.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-flowtype/-/eslint-plugin-flowtype-2.39.1.tgz#b5624622a0388bcd969f4351131232dcb9649cd5"
   dependencies:
     lodash "^4.15.0"
 
-eslint-plugin-prettier@^2.1.2:
+eslint-plugin-prettier@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-2.3.1.tgz#e7a746c67e716f335274b88295a9ead9f544e44d"
   dependencies:
     fast-diff "^1.1.1"
     jest-docblock "^21.0.0"
 
-eslint-plugin-react@^7.1.0:
+eslint-plugin-react@^7.4.0:
   version "7.4.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.4.0.tgz#300a95861b9729c087d362dd64abcc351a74364a"
   dependencies:
@@ -1326,9 +1326,9 @@ eslint-scope@^3.7.1:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint@^4.2.0:
-  version "4.7.2"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.7.2.tgz#ff6f5f5193848a27ee9b627be3e73fb9cb5e662e"
+eslint@^4.10.0:
+  version "4.10.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-4.10.0.tgz#f25d0d7955c81968c2309aa5c9a229e045176bb7"
   dependencies:
     ajv "^5.2.0"
     babel-code-frame "^6.22.0"
@@ -1618,7 +1618,7 @@ functional-red-black-tree@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
 
-fusion-core@^0.1.4:
+fusion-core@^0.1.8:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/fusion-core/-/fusion-core-0.1.8.tgz#2a71b98c6e0c59d3aba949e14e119051dc27f261"
   dependencies:
@@ -1626,9 +1626,9 @@ fusion-core@^0.1.4:
     koa-compose "^4.0.0"
     node-mocks-http "^1.6.6"
 
-fusion-plugin-csrf-protection@^0.1.4:
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/fusion-plugin-csrf-protection/-/fusion-plugin-csrf-protection-0.1.8.tgz#4501b1309a1a4f38825f350077eabe51f7c51b10"
+fusion-plugin-csrf-protection@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/fusion-plugin-csrf-protection/-/fusion-plugin-csrf-protection-0.2.0.tgz#f8e4ad728934328ebdff7900a56e6e556b9dd24f"
   dependencies:
     base64-url "^2.0.0"
 
@@ -1638,9 +1638,9 @@ fusion-react-async@0.1.4:
   dependencies:
     prop-types "^15.5.8"
 
-fusion-react@^0.1.4:
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/fusion-react/-/fusion-react-0.1.8.tgz#fed6129ffe7745f2692a94ac513d80af30821e0b"
+fusion-react@^0.1.9:
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/fusion-react/-/fusion-react-0.1.9.tgz#9313fc3fe221003c3c5b2592cb4512bfcc1e0095"
 
 get-stdin@^4.0.1:
   version "4.0.1"
@@ -2618,9 +2618,9 @@ preserve@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
 
-prettier@1.4.2:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.4.2.tgz#bcdd95ed1eca434ac7f98ca26ea4d25a2af6a2ac"
+prettier@1.7.4:
+  version "1.7.4"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.7.4.tgz#5e8624ae9363c80f95ec644584ecdf55d74f93fa"
 
 pretty-bytes@^1.0.2:
   version "1.0.4"
@@ -2709,6 +2709,13 @@ react-dom@16.0.0:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.0"
+
+react-test-renderer@^16.0.0:
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.0.0.tgz#9fe7b8308f2f71f29fc356d4102086f131c9cb15"
+  dependencies:
+    fbjs "^0.8.16"
+    object-assign "^4.1.1"
 
 react@^16.0.0:
   version "16.0.0"
@@ -3322,7 +3329,7 @@ ua-parser-js@^0.7.9:
   version "0.7.14"
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.14.tgz#110d53fa4c3f326c121292bbeac904d2e03387ca"
 
-unitest@^1.0.0:
+unitest@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/unitest/-/unitest-1.1.0.tgz#c5969513aac2ef0a926bb1f8bba481c07f323d65"
   dependencies:
