@@ -1,5 +1,5 @@
 import plugin from './plugin';
-import withCsrfProtection from './hoc';
+import withFetch from './hoc';
 
 export default plugin;
-export {withCsrfProtection};
+export {withFetch};

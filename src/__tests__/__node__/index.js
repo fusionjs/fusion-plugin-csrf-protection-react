@@ -1,6 +1,6 @@
 import test from 'tape-cup';
 import Plugin from '../../plugin';
-import withCsrfProtection from '../../hoc';
+import withFetch from '../../hoc';
 
 test('plugin', t => {
   t.equals(typeof Plugin, 'function');
@@ -11,8 +11,8 @@ test('plugin', t => {
 });
 test('hoc', t => {
   function Test() {}
-  const hoc = withCsrfProtection(Test);
-  t.equals(typeof withCsrfProtection, 'function');
+  const hoc = withFetch(Test);
+  t.equals(typeof withFetch, 'function');
   t.equals(hoc.displayName, 'WithCsrfProtection(Test)');
   t.end();
 });

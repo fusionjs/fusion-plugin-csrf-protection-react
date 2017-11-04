@@ -52,7 +52,7 @@ export default () => (ctx, next) => {
 
 ```js
 import React from 'react';
-import {withCsrfProtection} from 'fusion-plugin-csrf-protection-react';
+import {withFetch} from 'fusion-plugin-csrf-protection-react';
 
 class FetchingComponent extends React.Component {
   constructor(props) {
@@ -63,7 +63,7 @@ class FetchingComponent extends React.Component {
     };
   }
   componentDidMount() {
-    const {fetch} = this.props.csrfProtection;
+    const {fetch} = this.props;
     fetch('/api/hello', {method: 'POST'}).then(resp => {
       this.setState({
         loading: false,
@@ -79,7 +79,7 @@ class FetchingComponent extends React.Component {
   }
 }
 
-export default withCsrfProtection(Component)
+export default withFetch(Component)
 ```
 
 ---
@@ -106,12 +106,11 @@ const {fetch} = app.plugin(CsrfProtection, {Session}).of();
 #### Higher order component
 
 ```js
-import {withCsrfProtection} from 'fusion-plugin-csrf-protection-react';
+import {withFetch} from 'fusion-plugin-csrf-protection-react';
 
-const ProtectedComponent = withCsrfProtection(Component);
+const ProtectedComponent = withFetch(Component);
 ```
 
-The original `Component` receives a prop called `{csrfProtection}`
+The original `Component` receives a prop called `{fetch}`
 
-- `csrfProtection: {fetch}`
-  - `fetch: (url: string, options: Object) => Promise` - Client-only. A decorated `fetch` function that automatically does pre-flight requests for CSRF tokens if required.
+- `fetch: (url: string, options: Object) => Promise` - Client-only. A decorated `fetch` function that automatically does pre-flight requests for CSRF tokens if required.
