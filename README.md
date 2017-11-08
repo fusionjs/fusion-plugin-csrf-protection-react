@@ -1,5 +1,7 @@
 # fusion-plugin-csrf-protection-react
 
+[![Build status](https://badge.buildkite.com/374964b8390ea4b2a3cf0dee8ed69b4b31175e56ce60dd0686.svg?branch=master)](https://buildkite.com/uberopensource/fusion-plugin-csrf-protection-react)
+
 Adds CSRF protection to requests that use non-idempotent HTTP methods.
 
 This package provides a modified `fetch` that is automatically secure against CSRF attacks.
