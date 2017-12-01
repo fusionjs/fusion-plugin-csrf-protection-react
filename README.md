@@ -92,7 +92,7 @@ export default withFetch(Component)
 const Service = app.plugin(CsrfProtection, {Session});
 ```
 
-- `Session` - Required. A Session plugin, such as the one provided by [`fusion-plugin-jwt`](../fusion-plugin-jwt). The Session instance should expose a `get: (key: string) => string` and `set: (key: string, value: string) => string` methods.
+- `Session` - Required. A Session plugin, such as the one provided by [`fusion-plugin-jwt`](https://github.com/fusionjs/fusion-plugin-jwt). The Session instance should expose a `get: (key: string) => string` and `set: (key: string, value: string) => string` methods.
 - `Service: {ignore, fetch}`
   - `ignore: (url: string) => void` - Server-only. Disables CSRF protection for `url`
   - `fetch: (url: string, options: Object) => Promise` - Client-only. A decorated `fetch` function that automatically does pre-flight requests for CSRF tokens if required.
