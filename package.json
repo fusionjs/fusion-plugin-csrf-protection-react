@@ -47,7 +47,7 @@
     "react-dom": "16.1.1",
     "react-test-renderer": "^16.1.1",
     "tape-cup": "^4.7.1",
-    "unitest": "^1.1.0"
+    "unitest": "^2.1.1"
   },
   "peerDependencies": {
     "fusion-core": "^0.2.3",
