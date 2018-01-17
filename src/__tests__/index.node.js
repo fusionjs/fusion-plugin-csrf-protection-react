@@ -1,7 +1,7 @@
 import React from 'react';
 import test from 'tape-cup';
-import Plugin from '../../plugin';
-import withFetch from '../../hoc';
+import Plugin from '../plugin';
+import withFetch from '../hoc';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
 test('plugin', t => {
