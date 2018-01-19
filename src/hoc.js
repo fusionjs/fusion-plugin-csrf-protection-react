@@ -1,5 +1,3 @@
 import {ProvidedHOC} from 'fusion-react';
 
-export default ProvidedHOC.create('csrfProtection', csrfProtection => ({
-  fetch: csrfProtection.fetch,
-}));
+export default ProvidedHOC.create('fetch');

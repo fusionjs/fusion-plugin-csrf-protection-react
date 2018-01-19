@@ -1,28 +1,38 @@
 import React from 'react';
 import test from 'tape-cup';
-import Plugin from '../plugin';
+import App from 'fusion-react';
+import {GenericSessionToken, FetchToken} from 'fusion-tokens';
+import {createPlugin} from 'fusion-core';
+import {getSimulator} from 'fusion-test-utils';
+import CsrfPlugin from '../plugin';
 import withFetch from '../hoc';
-import ShallowRenderer from 'react-test-renderer/shallow';
 
-test('plugin', t => {
-  t.equals(typeof Plugin, 'function');
-  const Session = {get() {}, set() {}};
-  const CsrfProtection = Plugin({Session});
-  t.equals(typeof CsrfProtection.of().ignore, 'function');
-  t.end();
-});
-test('hoc', t => {
-  function Test() {}
-  const Connected = withFetch(Test);
-  t.equals(typeof withFetch, 'function');
-  t.equals(Connected.displayName, 'WithCsrfProtection(Test)');
-  const renderer = new ShallowRenderer();
-  renderer.render(React.createElement(Connected), {
-    csrfProtection: {
-      fetch: () => {},
+test('plugin', async t => {
+  const Session = createPlugin({
+    provides: () => {
+      return {
+        from: () => {
+          return {
+            get() {},
+            set() {},
+          };
+        },
+      };
     },
   });
-  const rendered = renderer.getRenderOutput();
-  t.equal(typeof rendered.props.fetch, 'function');
+  let didRender = false;
+  function Test(props) {
+    t.equal(typeof props.fetch, 'function');
+    didRender = true;
+    return React.createElement('div', null, 'hello');
+  }
+  const Root = withFetch(Test);
+  const app = new App(React.createElement(Root));
+  app.register(GenericSessionToken, Session);
+  app.register(FetchToken, CsrfPlugin);
+  const sim = getSimulator(app);
+  const res = await sim.render('/');
+  t.ok(res.body.includes('hello'));
+  t.ok(didRender);
   t.end();
 });
