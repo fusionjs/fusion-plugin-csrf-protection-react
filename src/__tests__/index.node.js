@@ -7,7 +7,7 @@
 import React from 'react';
 import test from 'tape-cup';
 import App from 'fusion-react';
-import {GenericSessionToken, FetchToken} from 'fusion-tokens';
+import {SessionToken, FetchToken} from 'fusion-tokens';
 import {createPlugin} from 'fusion-core';
 import {getSimulator} from 'fusion-test-utils';
 import CsrfPlugin from '../plugin';
@@ -34,7 +34,7 @@ test('plugin', async t => {
   }
   const Root = withFetch(Test);
   const app = new App(React.createElement(Root));
-  app.register(GenericSessionToken, Session);
+  app.register(SessionToken, Session);
   app.register(FetchToken, CsrfPlugin);
   const sim = getSimulator(app);
   const res = await sim.render('/');

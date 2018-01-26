@@ -23,30 +23,37 @@ yarn add fusion-plugin-csrf-protection-react
 ```js
 // src/main.js
 import React from 'react';
+import {FetchToken, SessionToken, createToken} from 'fusion-tokens';
 import App from 'fusion-react';
-import JWTSession from 'fusion-plugin-jwt';
+import Session from 'fusion-plugin-jwt';
 import CsrfProtection from 'fusion-plugin-csrf-protection-react';
-import Hello from './hello';
+import fetch from unfetch;
+
+const BaseFetchToken = createToken('BaseFetch');
 
 export default () => {
   const app = new App(<div></div>);
 
-  const Session = app.plugin(JWTSession, {secret: __NODE__ && 'secret here'});
-  const {fetch} = app.plugin(CsrfProtection, {Session});
+  app.register(SessionToken, Session);
+  app.register(BaseFetchToken, fetch);
+  app.register(FetchToken, CsrfProtection).alias(FetchToken, BaseFetchToken);
 
-  app.plugin(Hello);
-
-  // makes a pre-flight request for CSRF token if required,
-  // and prevents POST calls to /api/hello without a valid token
-  if (__BROWSER__) fetch('/api/hello', {method: 'POST'}).then(console.log);
-}
-
-// src/hello.js
-export default () => (ctx, next) => {
-  if (ctx.method === 'POST' && ctx.path === '/api/hello') {
-    ctx.body = {hello: 'world'};
+  if (__BROWSER__) {
+    app.register(BaseFetchToken, window.fetch);
+    app.middleware({fetch: FetchToken}, ({fetch}) => {
+      // makes a pre-flight request for CSRF token if required,
+      // and prevents POST calls to /api/hello without a valid token
+      const res = await fetch('/api/hello', {method: 'POST'});
+    });
   }
-  return next();
+  else {
+    app.middleware((ctx, next) => {
+      if (ctx.method === 'POST' && ctx.path === '/api/hello') {
+        ctx.body = {hello: 'world'};
+      }
+      return next();
+    });
+  }
 }
 ```
 
@@ -88,31 +95,41 @@ export default withFetch(Component)
 
 ### API
 
-```js
-const Service = app.plugin(CsrfProtection, {Session});
-```
-
-- `Session` - Required. A Session plugin, such as the one provided by [`fusion-plugin-jwt`](https://github.com/fusionjs/fusion-plugin-jwt). The Session instance should expose a `get: (key: string) => string` and `set: (key: string, value: string) => string` methods.
-- `Service: {ignore, fetch}`
-  - `ignore: (url: string) => void` - Server-only. Disables CSRF protection for `url`
-  - `fetch: (url: string, options: Object) => Promise` - Client-only. A decorated `fetch` function that automatically does pre-flight requests for CSRF tokens if required.
-
-#### Instance method
+#### Dependency registration
 
 ```js
-const {fetch} = app.plugin(CsrfProtection, {Session}).of();
+import {CsrfProtection} from 'fusion-plugin-csrf-protection-react';
+import {FetchToken, createToken} from 'fusion-tokens';
+const BaseFetchToken = createToken('BaseFetch');
+app.register(FetchToken, CsrfProtection).alias(FetchToken, BaseFetchToken);
 ```
 
-- `fetch: (url: string, options: Object) => Promise` - Client-only. A decorated `fetch` function that automatically does pre-flight requests for CSRF tokens if required.
+The `fusion-plugin-csrf-protection-react` module provides an api that matches the `fetch` api,
+and therefore can be registered on the standard `FetchToken` exported by `fusion-tokens`.
+However, since `fusion-plugin-csrf-protection` also depends on an implementation of `fetch`
+it is recommended to use token aliasing.
 
-#### Higher order component
+#### Dependencies
+
+##### `FetchToken`
+
+This plugin depends on an implementation of `fetch` registered on the standard `FetchToken` exported from `fusion-tokens`. Since you likely want to register `fusion-plugin-csrf-protection` back onto the `FetchToken`, it is recommended to use token aliasing.
+
+##### `SessionToken`
+
+This plugin depends on a A Session plugin, such as the one provided by [`fusion-plugin-jwt`](https://github.com/fusionjs/fusion-plugin-jwt).
+  The Session instance should expose a `get: (key: string) => string` and `set: (key: string, value: string) => string` methods.
+
+#### Instance API
 
 ```js
-import {withFetch} from 'fusion-plugin-csrf-protection-react';
-
-const ProtectedComponent = withFetch(Component);
+if (__BROWSER__) {
+  app.middleware({fetch: FetchToken}, ({fetch}) => {
+    // makes a pre-flight request for CSRF token if required,
+    // and prevents POST calls to /api/hello without a valid token
+    const res = await fetch('/hello/world', {method: 'POST'});
+  });
+}
 ```
 
-The original `Component` receives a prop called `{fetch}`
-
-- `fetch: (url: string, options: Object) => Promise` - Client-only. A decorated `fetch` function that automatically does pre-flight requests for CSRF tokens if required.
+`fetch: (url: string, options: Object) => Promise` - Client-only. A decorated `fetch` function that automatically does pre-flight requests for CSRF tokens if required.

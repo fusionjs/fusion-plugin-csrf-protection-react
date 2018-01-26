@@ -22,7 +22,7 @@
     "./dist/browser.es2015.es.js": "./dist/browser.es2017.es.js"
   },
   "dependencies": {
-    "fusion-plugin-csrf-protection": "^0.3.0"
+    "fusion-plugin-csrf-protection": "^0.3.1"
   },
   "devDependencies": {
     "babel-eslint": "8.2.1",
@@ -41,7 +41,7 @@
     "fusion-react": "0.4.1",
     "fusion-react-async": "0.1.4",
     "fusion-test-utils": "^0.4.0",
-    "fusion-tokens": "^0.0.5",
+    "fusion-tokens": "0.0.5",
     "nyc": "11.4.1",
     "prettier": "1.10.2",
     "react": "16.2.0",
@@ -53,6 +53,7 @@
   "peerDependencies": {
     "fusion-core": "^0.3.0-5",
     "fusion-react": "0.4.1",
+    "fusion-tokens": "0.0.5",
     "react": "14.x - 16.x"
   },
   "scripts": {
