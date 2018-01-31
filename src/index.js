@@ -4,8 +4,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
+import {
+  FetchForCsrfToken,
+  CsrfExpireToken,
+  CsrfIgnoreRoutesToken,
+} from 'fusion-plugin-csrf-protection';
 import plugin from './plugin';
 import withFetch from './hoc';
 
 export default plugin;
 export {withFetch};
+export {FetchForCsrfToken, CsrfExpireToken, CsrfIgnoreRoutesToken};
