@@ -26,20 +26,17 @@ import React from 'react';
 import {FetchToken, SessionToken, createToken} from 'fusion-tokens';
 import App from 'fusion-react';
 import Session from 'fusion-plugin-jwt';
-import CsrfProtection from 'fusion-plugin-csrf-protection-react';
+import CsrfProtection, {FetchForCsrfToken} from 'fusion-plugin-csrf-protection-react';
 import fetch from unfetch;
-
-const BaseFetchToken = createToken('BaseFetch');
 
 export default () => {
   const app = new App(<div></div>);
 
-  app.register(SessionToken, Session);
-  app.register(BaseFetchToken, fetch);
-  app.register(FetchToken, CsrfProtection).alias(FetchToken, BaseFetchToken);
+  app.register(FetchForCsrfToken, fetch);
+  app.register(FetchToken, CsrfProtection);
 
   if (__BROWSER__) {
-    app.register(BaseFetchToken, window.fetch);
+    app.register(FetchForCsrfToken, fetch);
     app.middleware({fetch: FetchToken}, ({fetch}) => {
       // makes a pre-flight request for CSRF token if required,
       // and prevents POST calls to /api/hello without a valid token
@@ -111,13 +108,30 @@ it is recommended to use token aliasing.
 
 #### Dependencies
 
-##### `FetchToken`
+#### Dependency registration
 
-This plugin depends on an implementation of `fetch` registered on the standard `FetchToken` exported from `fusion-tokens`. Since you likely want to register `fusion-plugin-csrf-protection` back onto the `FetchToken`, it is recommended to use token aliasing.
+```js
+import CsrfProtection, {
+  FetchForCsrfToken,
+  CsrfExpireToken,
+  CsrfIgnoreRoutesToken,
+} from 'fusion-plugin-csrf-protection';
+import {FetchToken, SessionToken} from 'fusion-tokens';
 
-##### `SessionToken`
+app.register(FetchToken, CsrfProtection);
+app.register(FetchForCsrfToken, fetch);
+app.register(CsrfExpireToken, expires);
+app.register(CsrfIgnoreRoutesToken, ignoredRoutes);
+app.register(SessionToken, Session);
+```
 
-This plugin depends on a A Session plugin, such as the one provided by [`fusion-plugin-jwt`](https://github.com/fusionjs/fusion-plugin-jwt).
+The `fusion-plugin-csrf-protection` module provides an api that matches the `fetch` api,
+and therefore can be registered on the standard `FetchToken` exported by `fusion-tokens`.
+
+* `fetch: (url: string, options: Object) => Promise` - A [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) implementation.
+* `expires: number` - Optional. Defaults to 86400 (seconds). When to expire the token.
+* `ignoredRoutes: Array<string>` - Optional. Defaults to `[]`. A list of paths that should not be gated by CSRF protection. For example `['/_errors']` would allow error logging requests to `/_errors` to be sent without a CSRF token.
+* `Session` - a Session plugin, such as the one provided by [`fusion-plugin-jwt`](https://github.com/fusionjs/fusion-plugin-jwt).
   The Session instance should expose a `get: (key: string) => string` and `set: (key: string, value: string) => string` methods.
 
 #### Instance API
