@@ -1,7 +1,7 @@
 {
   "name": "fusion-plugin-csrf-protection-react",
   "description": "Adds CSRF protection to requests that use non-idempotent HTTP methods.",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "license": "MIT",
   "repository": "fusionjs/fusion-plugin-csrf-protection-react",
   "files": [
@@ -22,7 +22,7 @@
     "./dist/browser.es2015.es.js": "./dist/browser.es2017.es.js"
   },
   "dependencies": {
-    "fusion-plugin-csrf-protection": "^0.3.1"
+    "fusion-plugin-csrf-protection": "^0.3.3"
   },
   "devDependencies": {
     "babel-eslint": "8.2.1",
