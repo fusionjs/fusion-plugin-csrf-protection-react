@@ -22,7 +22,7 @@
     "./dist/browser.es2015.es.js": "./dist/browser.es2017.es.js"
   },
   "dependencies": {
-    "fusion-plugin-csrf-protection": "^1.0.0"
+    "fusion-plugin-csrf-protection": "^1.0.1"
   },
   "devDependencies": {
     "babel-eslint": "8.2.1",

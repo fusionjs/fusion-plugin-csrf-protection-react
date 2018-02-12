@@ -2312,9 +2312,9 @@ fusion-core@^1.0.0:
     node-mocks-http "^1.6.6"
     toposort "^1.0.6"
 
-fusion-plugin-csrf-protection@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/fusion-plugin-csrf-protection/-/fusion-plugin-csrf-protection-1.0.0.tgz#46a04bbd3461aacb0c6d5bdb969a97efc4d87482"
+fusion-plugin-csrf-protection@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/fusion-plugin-csrf-protection/-/fusion-plugin-csrf-protection-1.0.1.tgz#955939bcb1aa63b6abc238e3d1ab1a3352db3b8d"
   dependencies:
     base64-url "^2.1.0"
 
