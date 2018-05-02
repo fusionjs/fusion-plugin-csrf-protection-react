@@ -2,6 +2,8 @@
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
+ *
+ * @flow
  */
 
 import React from 'react';
@@ -38,7 +40,7 @@ test('plugin', async t => {
   app.register(FetchToken, CsrfPlugin);
   const sim = getSimulator(app);
   const res = await sim.render('/');
-  t.ok(res.body.includes('hello'));
+  t.ok(typeof res.body === 'string' && res.body.includes('hello'));
   t.ok(didRender);
   t.end();
 });
