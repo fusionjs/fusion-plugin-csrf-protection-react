@@ -23,7 +23,8 @@
   },
   "dependencies": {
     "eslint-plugin-jest": "^21.18.0",
-    "fusion-plugin-csrf-protection": "^1.0.3"
+    "fusion-plugin-csrf-protection": "^1.0.3",
+    "prop-types": "^15.6.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
